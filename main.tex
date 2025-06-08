@@ -715,10 +715,13 @@ Despite the latent distribution showing limits [-4,+4] for both latent dimension
     \label{fig:model5_latent_dist}
 \end{figure}
 
-\subsection{Genetic Algorithm Results}
+\subsection{Genetic Algorithm}
 In demonstrating the effect of transforming design problems to a low-dimensional latent representation prior to performing optimisation, we first demonstrate the capability of a genetic algorithm to optimise for the geometric compactness metric (Equation~\eqref{eq:compactness}) for high-dimensional, random noise shapes defined by a series of nodes of fixed connectivity as described in (insert Section 2.1 ref here). While the end use-case, and as will be demonstrated in this research, is to explore designs that reflect realistic samples, we will first approach the problem of random noise, an arguably more complex geometric challenge and starting condition to solve for. Examples of such starting representations are shown in Figure~\ref{fig:random_noise_ga_shapes}. We begin with an initial resolution (i.e, nodes defining the random polygons) of 10 and apply the genetic algorithm on polygons up to resolution of 300 nodes (see Table~\ref{tab:GA_models_original}). Despite the shapes being represented on a 2D manifold, the dimensionality of the design problem and hence the design space is defined by the number of varying parameters, or number of geometric nodes in the case of this research and it is expected that as we move towards increasing resolutions, the efficacy of the GA will become limited. After motivating the necessity to explore more efficient design-space representations, we then perform optimisation via the genetic algorithm directly on the latent space, whereby the genes of the individuals are represented by the latent values in the latent vectors for each $L$-dimensional latent representation starting from $L=2$ up to $L=6$ - thus realising a significant reduction in the dimensionality of the design space.
 
-\subsubsection{GA1 - Random Noise Polygon: Resolution = 10; Number of Parents = 4}
+\subsubsection{Genetic Algorithm - Random Polygon Results}
+The following section present the initial starting population of random polygons and samples of the final population after 1000 generations of the genetic algorithm for each of the GAs lsted in Table~\ref{tab:GA_models_original}.
+
+\subsubsection*{GA1 - Random Noise Polygon: Resolution = 10; Number of Parents = 4; Initial Population = 100}
 
 \begin{figure}[H]
     \centering
@@ -746,7 +749,7 @@ In demonstrating the effect of transforming design problems to a low-dimensional
     \label{fig:GA1_fitness_curve}
 \end{figure}
 
-\subsubsection{GA2 - Random Noise Polygon: Resolution = 10; Number of Parents = 10}
+\subsubsection*{GA2 - Random Noise Polygon: Resolution = 10; Number of Parents = 10; Initial Population = 100}
 
 \begin{figure}[H]
     \centering
@@ -776,7 +779,7 @@ In demonstrating the effect of transforming design problems to a low-dimensional
 
 
 
-\subsubsection{GA3 - Random Noise Polygon: Resolution = 30; Number of Parents = 10}
+\subsubsection*{GA3 - Random Noise Polygon: Resolution = 30; Number of Parents = 10; Initial Population = 100}
 
 \begin{figure}[H]
     \centering
@@ -803,6 +806,486 @@ In demonstrating the effect of transforming design problems to a low-dimensional
     \caption{GA2 Genetic Algorithm Fitness Score Evolution}
     \label{fig:GA3_fitness}
 \end{figure}
+
+\subsubsection*{GA4 - Random Noise Polygon: Resolution = 50; Number of Parents = 10; Initial Population = 100}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA4/50point_initial_pop.png}
+        \caption{Initial starting population}
+        \label{fig:GA4_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA4/final_population.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA4_final}
+    \end{subfigure}
+    \caption{GA4 starting and final population after optimising for compactness metric.}
+    \label{fig:GA4_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA4/1000gens_10pars_100initpop_5pcent_mut.png}
+    \caption{GA4 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA4_fitness}
+\end{figure}
+
+\subsubsection*{GA5 - Random Noise Polygon: Resolution = 100; Number of Parents = 10; Initial Population = 100}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA5/100point_initial_pop.png}
+        \caption{Initial starting population}
+        \label{fig:GA5_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA5/final_population.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA5_final}
+    \end{subfigure}
+    \caption{GA5 starting and final population after optimising for compactness metric.}
+    \label{fig:GA5_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA5/1000gens_10pars_100initpop_5pcent_mut.png}
+    \caption{GA5 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA5_fitness}
+\end{figure}
+
+\subsubsection*{GA6 - Random Noise Polygon: Resolution = 200; Number of Parents = 4; Initial Population = 100}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA6/200point_initial_pop.png}
+        \caption{Initial starting population}
+        \label{fig:GA6_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA6/1000gens_4pars_100initpop_5pcent_mut.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA6_final}
+    \end{subfigure}
+    \caption{GA6 starting and final population after optimising for compactness metric.}
+    \label{fig:GA6_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA6/fitness_curve.png}
+    \caption{GA6 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA6_fitness}
+\end{figure}
+
+\subsubsection*{GA7 - Random Noise Polygon: Resolution = 200; Number of Parents = 20; Initial Population = 100}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA7/200point_initial_pop.png}
+        \caption{Initial starting population}
+        \label{fig:GA7_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA7/1000gens_20pars_100initpop_5pcent_mut.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA7_final}
+    \end{subfigure}
+    \caption{GA7 starting and final population after optimising for compactness metric.}
+    \label{fig:GA7_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA7/fitness_curve.png}
+    \caption{GA7 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA7_fitness}
+\end{figure}
+
+\subsubsection*{GA8 - Random Noise Polygon: Resolution = 200; Number of Parents = 20; Initial Population = 1000}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA8/200point_initial_pop.png}
+        \caption{Initial starting population}
+        \label{fig:GA8_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA8/1000gens_20pars_1000initpop_5pcent_mut.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA8_final}
+    \end{subfigure}
+    \caption{GA8 starting and final population after optimising for compactness metric.}
+    \label{fig:GA8_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA8/fitness_curve.png}
+    \caption{GA8 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA8_fitness}
+\end{figure}
+
+\subsubsection*{GA9 - Random Noise Polygon: Resolution = 300; Number of Parents = 10; Initial Population = 100}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA9/300point_initial_pop.png}
+        \caption{Initial starting population}
+        \label{fig:GA9_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA9/1000gens_10pars_100initpop_5pcent_mut.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA9_final}
+    \end{subfigure}
+    \caption{GA9 starting and final population after optimising for compactness metric.}
+    \label{fig:GA9_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA9/fitness_curve.png}
+    \caption{GA9 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA9_fitness}
+\end{figure}
+
+\subsubsection*{GA10 - Random Noise Polygon: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA10/300point_initial_pop.png}
+        \caption{Initial starting population}
+        \label{fig:GA10_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA10/1000gens_10pars_1000initpop_5pcent_mut.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA10_final}
+    \end{subfigure}
+    \caption{GA10 starting and final population after optimising for compactness metric.}
+    \label{fig:GA10_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA10/fitness_curve.png}
+    \caption{GA10 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA10_fitness}
+\end{figure}
+
+\subsubsection{Genetic Algorithm - Latent Representation Results}
+
+\subsubsection*{GA11 - 2D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA11/50_init_pop.png}
+        \caption{Initial starting population}
+        \label{fig:GA11_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA11/latent/final_generation.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA11_final}
+    \end{subfigure}
+    \caption{GA11 starting and final population after optimising for compactness metric.}
+    \label{fig:GA11_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA11/latent/100gen_fitness.png}
+    \caption{GA11 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA11_fitness}
+\end{figure}
+
+\subsubsection*{GA12 - 2D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA12/initial_pop10.png}
+        \caption{Initial starting population}
+        \label{fig:GA12_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA12/final_pop10.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA12_final}
+    \end{subfigure}
+    \caption{GA12 starting and final population after optimising for compactness metric.}
+    \label{fig:GA12_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA12/100gen_fitness.png}
+    \caption{GA12 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA12_fitness}
+\end{figure}
+
+\subsubsection*{GA13 - 3D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA13/50_init_pop.png}
+        \caption{Initial starting population}
+        \label{fig:GA13_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA13/latent/final_generation.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA13_final}
+    \end{subfigure}
+    \caption{GA13 starting and final population after optimising for compactness metric.}
+    \label{fig:GA13_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA13/latent/100gen_fitness.png}
+    \caption{GA13 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA13_fitness}
+\end{figure}
+
+\subsubsection*{GA14 - 3D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA14/init_pop10.png}
+        \caption{Initial starting population}
+        \label{fig:GA14_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA14/final_pop10.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA14_final}
+    \end{subfigure}
+    \caption{GA14 starting and final population after optimising for compactness metric.}
+    \label{fig:GA14_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA14/100gen_fitness.png}
+    \caption{GA14 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA14_fitness}
+\end{figure}
+
+\subsubsection*{GA15 - 3D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA15/50initial_pop.png}
+        \caption{Initial starting population}
+        \label{fig:GA15_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA15/latent/final_generation.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA15_final}
+    \end{subfigure}
+    \caption{GA15 starting and final population after optimising for compactness metric.}
+    \label{fig:GA15_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA15/latent/100gens_10pars_5pcentmut.png}
+    \caption{GA15 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA15_fitness}
+\end{figure}
+
+\subsubsection*{GA16 - 3D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA16/init_pop10.png}
+        \caption{Initial starting population}
+        \label{fig:GA16_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA16/final_pop10.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA16_final}
+    \end{subfigure}
+    \caption{GA16 starting and final population after optimising for compactness metric.}
+    \label{fig:GA16_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA16/100gen_fitness.png}
+    \caption{GA16 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA16_fitness}
+\end{figure}
+
+\subsubsection*{GA17 - 3D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA17/50_init_pop.png}
+        \caption{Initial starting population}
+        \label{fig:GA17_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA17/latent/final_generation.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA17_final}
+    \end{subfigure}
+    \caption{GA17 starting and final population after optimising for compactness metric.}
+    \label{fig:GA17_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA17/latent/100gen_fitness.png}
+    \caption{GA17 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA17_fitness}
+\end{figure}
+
+\subsubsection*{GA18 - 3D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA18/init_pop10.png}
+        \caption{Initial starting population}
+        \label{fig:GA18_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA18/final_pop10.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA18_final}
+    \end{subfigure}
+    \caption{GA17 starting and final population after optimising for compactness metric.}
+    \label{fig:GA18_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA18/10gen_fitness.png}
+    \caption{GA18 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA18_fitness}
+\end{figure}
+
+\subsubsection*{GA19 - 6D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA19/50init_pop.png}
+        \caption{Initial starting population}
+        \label{fig:GA19_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA19/latent/final_generation.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA19_final}
+    \end{subfigure}
+    \caption{GA19 starting and final population after optimising for compactness metric.}
+    \label{fig:GA19_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA19/latent/100gen_fitness.png}
+    \caption{GA19 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA19_fitness}
+\end{figure}
+
+\subsubsection*{GA20 - 6D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA20/init_pop10.png}
+        \caption{Initial starting population}
+        \label{fig:GA19_starting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA20/final_pop10.png}
+        \caption{After 1000 generations of GA evolution.}
+        \label{fig:GA20_final}
+    \end{subfigure}
+    \caption{GA20 starting and final population after optimising for compactness metric.}
+    \label{fig:GA20_before_after_GA}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA20/10gen_fitness.png}
+    \caption{GA20 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA20_fitness}
+\end{figure}
+
+
 
 
 \newpage{}
