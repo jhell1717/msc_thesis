@@ -6,6 +6,9 @@
 \usepackage{natbib}
 
 \usepackage{algorithm}
+
+\usepackage{caption}
+\usepackage{array}% For line breaks in cells
 \usepackage{subcaption}
 
 \usepackage{algorithmic}
@@ -27,6 +30,9 @@
 \usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\renewcommand{\arraystretch}{1.4} % More vertical space
+\setlength{\tabcolsep}{6pt} % More horizontal padding
 
 \title{Enabling Sample Efficient Design Space Exploration through Machine Learning}
 \author{Joshua Hellewell}
@@ -325,6 +331,12 @@ Here:
 \end{itemize}
 
 \subsection{Related Works}
+The literature presents a vast application of generative models for the purpose of enabling dimensionality reduction to support efficiencies and maximise utilisation in downstream workflows. As is leveraged in this research, numerous studies incorporate variational autoencoders to provide a generative, continuous and smooth latent representation of an otherwise high-dimensional problem. In \cite{Huang2022} build a variational autoencoder network to compress their hardware accelerator design problem. The specific problem focuses on a discrete design space, including variables such as number of processing elements, resulting in a large but finite design space of $10^{17}$ configurations over 6 discrete parameters. In the 2D domain of geometric shape optimisation, this design landscape is continuous and infinite, therefore reinforcing the necessity to provide a compact representation over which to search. In addition to transforming their design representation, they also develop a predictive model for latency and energy predictors, performing as a surrogate model. Due to the analytical tractability of our performance metric, we opt to compute the performance surface directly. The VAE model and fully connected multi-layer perceptron (MLP) are trained in an end-to-end manner thus providing a combined loss for the training process that includes the VAE loss, and the loss associated with the energy and latency predictions. By incorporating a fully differentiable MLP network, they also enable gradient determination via auto-differentiation to provide a performance function over the latent space, making it interfaceable with gradient based optimisation techniques. While the study makes acknowledgement to training the models on realistic and valid data points in the design space, they do not demonstrate the inability of performing optimisation methods on their original design manifold containing 6 design variables. Our work aims to motivate the need for pursuing low-dimensional representations by performing geometric shape optimisation on geometries in a high-dimensional representation and compare the efficacy when performed post-latent transformation. Similarly to our work, the authors demonstrate the reconstruction loss of the VAE over 4 different latent dimensions (i.e., [1,2,4,6]). Metrics for assessing their models include finding the highest performing points, and sample efficiency defined as the rate at which optimisation frameworks find points in the latent design space that have a performance within 3\% of the highest known. Finally, the authors also opt to explore different values for the Beta term, controlling the weighting of the KL-divergence in the combined VAE loss term to assess performance at Beta=0, 0.01 and 0.0001. We do not apply any weighting to KL-divergence component of the VAE loss term in order to minimise the number of independent variables between the different VAE models, with the intent of providing unbiased insights into impact of adjusting only the bottleneck size of our network.
+
+Andrew Lew et al also employ VAEs to enable efficient design space exploration, with a focus on material structures, especially for optimisation of cantilever design via trajectory exploration within the 2D latent space. Their use of a VAE model enables exploration and generation of novel cantilever designs, thus unveiling performant designs extrapolated beyond the limits of the original training dataset. They opt to use image data as their input into the models, whereby each datapoint into the VAE is an image of a cantilever design with a varying mass fraction between 5\% and 99\%. By utilising an image-based format of their data, they can leverage 2D convolutional operations (Oshea CNNs) for the VAE architecture, thus enabling the learn of spatial features in the dataset in the form of convolutional filters. Such an architecture is an efficient alternative to the fully connected MLP due to the weight sharing nature of the convolutional filters, making it well-suited to high-dimensional computationally expensive input data. While the author reports 2D input images, convolutional approaches can be extended to 3D convolutions where features are learned from voxels. While this approach is promising, opting to represent inputs as 2D pixel or 3D voxel images enforces a loss of fidelity, whereby the inputs are constrained to a discretised grid. While doing this does reduce the design space volume from continuous to discrete, it introduces a loss of fidelity and therefore information. For example, attempting to represent a highly complex curved surface via pixels will introduce steps to the surface, therefore detracting from the original high-fidelity input.
+
+
+
 
 \newpage
 
