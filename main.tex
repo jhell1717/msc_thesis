@@ -706,14 +706,20 @@ The generated shapes shown in Figure~\ref{fig:model3_fixz1z4} reveal reveal clus
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\linewidth]{figures/VAEmodels/model3/fix_z1z4_0.0png.png}
-    \caption{Model 3 - Latent space visualisation with $Z_1$ = 0, $Z_4$ = 0}
-    \label{fig:model3_fixz1z4}
+    \includegraphics[width=0.75\linewidth]{figures/VAEmodels/model3/varying_z3_z4_fixed_z1=0.0_z2=0.0.png}
+    \caption{Model 3 - Latent space visualisation with $Z_1$ = 0, $Z_2$ = 0}
+    \label{fig:model3_fixz1z2}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/VAEmodels/model3/varying_z1_z4_fixed_z2=0.0_z3=0.0.png}
+    \caption{Model 3 - Latent space visualisation with $Z_2$ = 0, $Z_3$ = 0}
+    \label{fig:model3_fixz2z3}
 \end{figure}
 
 \subsubsection{VAE Model 4 - 5D Latent Dimension}
 
-Model 4 expands upon the previous with an additional latent dimension, for a total of 5 dimensions. As previously demonstrated, the sole addition of an extra dimension in the bottleneck layer of the VAE does not significantly increase the size of the model architecture with respect to to model parameters, and as a result, the training phase of the VAE exhibits almost identical performance to models with lesser numbers of dimensions
+Model 4 expands upon the previous with an additional latent dimension, for a total of 5 dimensions. As previously demonstrated, the sole addition of an extra dimension in the bottleneck layer of the VAE does not significantly increase the size of the model architecture with respect to to model parameters, and as a result, the training phase of the VAE exhibits almost identical performance to models with lesser numbers of dimensions - this is shown in Figure~\ref{fig:model4_loss_plot}, with a combined MSE + KL-divergence loss of ~1000. For 5 dimensions, there are 10 possible combinations of visualising the generated latent shapes over 2 latent dimensions, therefore again, we refer the reader to the appendix for the full set.
 
 \begin{figure}[H]
 \centering
@@ -731,9 +737,35 @@ Model 4 expands upon the previous with an additional latent dimension, for a tot
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\linewidth]{figures/VAEmodels/model3/fix_z1z4_0.0png.png}
-    \caption{Model 3 - Latent space visualisation with $Z_1$ = 0, $Z_4$ = 0}
+    \includegraphics[width=0.75\linewidth]{figures/VAEmodels/model4/varying_z2_z4_fixed_z1=0.0_z3=0.0_z5=0.0.png}
+    \caption{Model 4 - Latent space visualisation with $Z_1$ = 0, $Z_3$ = 0, $Z_5$ = 0}
     \label{fig:model4_fix}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.8\textwidth}
+  \centering
+    \includegraphics[height=0.3\textheight]{figures/VAEmodels/model4/varying_z2_z4_fixed_z1=0.0_z3=0.0_z5=0.0.png}
+    \caption{$Z_1=0.0 \; Z_3=0.0 \; Z_5=0.0$}
+    \label{fig:model4_fixz1z3z5_latent}
+  \end{subfigure}
+  \par\medskip
+  \begin{subfigure}{0.8\textwidth}
+  \centering
+    \includegraphics[height=0.3\textheight]{figures/VAEmodels/model4/varying_z2_z3_fixed_z1=0.0_z4=0.0_z5=0.0.png}
+    \caption{$Z_1=0.0 \; Z_4=0.0 \; Z_5=0.0$}
+    \label{fig:model4_fixz1z4z5_latent}
+  \end{subfigure}
+  \par\medskip
+  \begin{subfigure}{0.8\textwidth}
+  \centering
+    \includegraphics[height=0.3\textheight]{figures/VAEmodels/model4/varying_z2_z5_fixed_z1=0.0_z3=0.0_z4=0.0.png}
+    \caption{$Z_1=0.0 \; Z_3=0.0 \; Z_4=0.0$}
+    \label{fig:model4_fixzz1z3z4_latent}
+  \end{subfigure}
+  \caption{Model 4 - Latent space visualisation with compactness colourmap.}
+  \label{fig:model4_latent_visualisations}
 \end{figure}
 
 \subsubsection{VAE Model 5 - 6D Latent Dimension}
@@ -750,6 +782,32 @@ Model 4 expands upon the previous with an additional latent dimension, for a tot
     \includegraphics[width=0.75\linewidth]{figures/VAEmodels/model5/latent_distribution.png}
     \caption{Model 5 - Latent dimension distributions over all training data}
     \label{fig:model5_latent_dist}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.8\textwidth}
+  \centering
+    \includegraphics[height=0.3\textheight]{figures/VAEmodels/model4/varying_z2_z4_fixed_z1=0.0_z3=0.0_z5=0.0.png}
+    \caption{$Z_1=0.0 \; Z_3=0.0 \; Z_5=0.0$}
+    \label{fig:model4_fixz1z3z5_latent}
+  \end{subfigure}
+  \par\medskip
+  \begin{subfigure}{0.8\textwidth}
+  \centering
+    \includegraphics[height=0.3\textheight]{figures/VAEmodels/model4/varying_z2_z3_fixed_z1=0.0_z4=0.0_z5=0.0.png}
+    \caption{$Z_1=0.0 \; Z_4=0.0 \; Z_5=0.0$}
+    \label{fig:model4_fixz1z4z5_latent}
+  \end{subfigure}
+  \par\medskip
+  \begin{subfigure}{0.8\textwidth}
+  \centering
+    \includegraphics[height=0.3\textheight]{figures/VAEmodels/model4/varying_z2_z5_fixed_z1=0.0_z3=0.0_z4=0.0.png}
+    \caption{$Z_1=0.0 \; Z_3=0.0 \; Z_4=0.0$}
+    \label{fig:model4_fixzz1z3z4_latent}
+  \end{subfigure}
+  \caption{Model 4 - Latent space visualisation with compactness colourmap.}
+  \label{fig:model4_latent_visualisations}
 \end{figure}
 
 \subsection{Genetic Algorithm}
