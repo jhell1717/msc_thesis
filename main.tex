@@ -704,18 +704,44 @@ The distribution of all latent values, for each of the latent dimensions are pre
 
 The generated shapes shown in Figure~\ref{fig:model3_fixz1z4} reveal reveal clusters whereby the performance metric has little to no change over regions of the latent space. For example, for $Z_1$ and $Z_2$ between [-3,-1] squares dominate the generated shape population, however, across this range there is no obvious sign of variation between the squares shape, neither is there any change in the compactness value. In other regions, such example $Z_3$ = [-3,-1] and $Z_2$ = [[1,3] there is a clear transition from a pentagon-like shape in the top left, down to a compressed star like structure in the bottom right with a more prominent change in the compactness value represented by the gradient of the colormap. Interpolating through this region of the latent dimensions results in increased discovery of novel shapes; a desirable characteristic in design space exploration. Deploying, for example, gradient based optimisation through finite-difference exploration would enable navigation towards an optimal compactness value, whereas for the square region, there is little performance gain to be realised, therefore the volume of the design space would need to be increase to reliably identify varying designs.
 
+
 \begin{figure}[H]
+  \centering
+
+  \begin{subfigure}{0.48\textwidth}
     \centering
-    \includegraphics[width=0.75\linewidth]{figures/VAEmodels/model3/varying_z3_z4_fixed_z1=0.0_z2=0.0.png}
-    \caption{Model 3 - Latent space visualisation with $Z_1$ = 0, $Z_2$ = 0}
-    \label{fig:model3_fixz1z2}
-\end{figure}
-\begin{figure}[H]
+    \includegraphics[width=\textwidth]{figures/VAEmodels/model3/varying_z3_z4_fixed_z1=0.0_z2=0.0.png}
+    \caption{Latent dimensions $Z_3$ and $Z_4$}
+    \label{fig:model3_z3_z4}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\textwidth}
     \centering
-    \includegraphics[width=0.75\linewidth]{figures/VAEmodels/model3/varying_z1_z4_fixed_z2=0.0_z3=0.0.png}
-    \caption{Model 3 - Latent space visualisation with $Z_2$ = 0, $Z_3$ = 0}
-    \label{fig:model3_fixz2z3}
+    \includegraphics[width=\textwidth]{figures/VAEmodels/model3/varying_z1_z4_fixed_z2=0.0_z3=0.0.png}
+    \caption{Latent dimensions $Z_1$ and $Z_4$}
+    \label{fig:model3_z1_z4}
+  \end{subfigure}
+
+  \vspace{0.5em}
+
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/VAEmodels/model3/varying_z2_z4_fixed_z1=0.0_z3=0.0.png}
+    \caption{Latent dimensions $Z_2$ and $Z_4$}
+    \label{fig:model3_z2_z4}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/VAEmodels/model3/varying_z2_z3_fixed_z1=0.0_z4=0.0.png}
+    \caption{Latent dimensions $Z_2$ and $Z_3$}
+    \label{fig:model3_z2_z3}
+  \end{subfigure}
+
+  \caption{Model 3 - Latent space visualisation with compactness colourmap.}
+  \label{fig:model3_latent_visualisations}
 \end{figure}
+
 
 \subsubsection{VAE Model 4 - 5D Latent Dimension}
 
@@ -728,6 +754,8 @@ Model 4 expands upon the previous with an additional latent dimension, for a tot
     \label{fig:model4_loss_plot}
 \end{figure}
 
+We present the distribution over all 5 dimensions when encoding all the 100,000 training shapes. The distribution of latent values for each of the dimensions is shown in Figure~\ref{fig:model4_latent_dist}. The most unique distribution is observed for latent dimension 3, whereby there are peaks around values of 0 and 1, with a shoulder also evident at -2. The remaining latent dimensions show similar distribution centred around 0. The range of z values across all latent dimensions remains similar, not exceeding above or below 4 and -4 respectively.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\linewidth]{figures/VAEmodels/model4/latent_distribution.png}
@@ -735,38 +763,46 @@ Model 4 expands upon the previous with an additional latent dimension, for a tot
     \label{fig:model4_latent_dist}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.75\linewidth]{figures/VAEmodels/model4/varying_z2_z4_fixed_z1=0.0_z3=0.0_z5=0.0.png}
-    \caption{Model 4 - Latent space visualisation with $Z_1$ = 0, $Z_3$ = 0, $Z_5$ = 0}
-    \label{fig:model4_fix}
-\end{figure}
+We present 3 combinations of latent dimensions that demonstrate the greatest variance in 1) shape diversity, and 2) range of compactness values across the generated shape range. These can be in seen in Figure~\ref{fig:model4_latent_visualisations}. Following trend for the previous VAE models, one single combination of two latent dimensions results in the most expressive latent space, with the largest variance in the shapes generated across the sampled z-value range. Figure~\ref{fig:model4_z2_z4} demonstrates a complex performance surface that has variation in the generated shapes for interpolation across both $Z_2$ and $Z_5$ dimensions. In contrast, Figure~\ref{fig:model4_z2_z3} exhibits banding where navigation through the $Z_3$ latent dimension yields little to no change in the generated shapes and resultant compactness - this is represented as vertical bands across the generated  shapes. Meanwhile, in Figure~\ref{fig:model4_z1_z5}, the generated shapes appear very similar in geometry terms, though there is a gradual, but present gradient in the compactness metrics across the range, suggesting a subtale 'tweaking' of the shape that translates into a larger or smaller compactness value. In this example, interpolation through the latent space does not yield diversity in the generated designs, though does exhibit favourable smoothness and continuity characteristics. The reader is reffered to the appendix to view the remaining 2D latent visualisations for the 5 dimensional VAE model.
+
 
 \begin{figure}[H]
   \centering
-  \begin{subfigure}{0.8\textwidth}
-  \centering
-    \includegraphics[height=0.3\textheight]{figures/VAEmodels/model4/varying_z2_z4_fixed_z1=0.0_z3=0.0_z5=0.0.png}
-    \caption{$Z_1=0.0 \; Z_3=0.0 \; Z_5=0.0$}
-    \label{fig:model4_fixz1z3z5_latent}
+
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/VAEmodels/model4/varying_z2_z4_fixed_z1=0.0_z3=0.0_z5=0.0.png}
+    \caption{Latent dimensions $Z_2$ and $Z_4$}
+    \label{fig:model4_z2_z4}
   \end{subfigure}
-  \par\medskip
-  \begin{subfigure}{0.8\textwidth}
-  \centering
-    \includegraphics[height=0.3\textheight]{figures/VAEmodels/model4/varying_z2_z3_fixed_z1=0.0_z4=0.0_z5=0.0.png}
-    \caption{$Z_1=0.0 \; Z_4=0.0 \; Z_5=0.0$}
-    \label{fig:model4_fixz1z4z5_latent}
+  \hfill
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/VAEmodels/model4/varying_z2_z3_fixed_z1=0.0_z4=0.0_z5=0.0.png}
+    \caption{Latent dimensions $Z_2$ and $Z_3$}
+    \label{fig:model4_z2_z3}
   \end{subfigure}
-  \par\medskip
-  \begin{subfigure}{0.8\textwidth}
-  \centering
-    \includegraphics[height=0.3\textheight]{figures/VAEmodels/model4/varying_z2_z5_fixed_z1=0.0_z3=0.0_z4=0.0.png}
-    \caption{$Z_1=0.0 \; Z_3=0.0 \; Z_4=0.0$}
-    \label{fig:model4_fixzz1z3z4_latent}
+
+  \vspace{0.5em}
+
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/VAEmodels/model4/varying_z1_z5_fixed_z2=0.0_z3=0.0_z4=0.0.png}
+    \caption{Latent dimensions $Z_1$ and $Z_5$}
+    \label{fig:model4_z1_z5}
   \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/VAEmodels/model4/varying_z1_z2_fixed_z3=0.0_z4=0.0_z5=0.0.png}
+    \caption{Latent dimensions $Z_1$ and $Z_2$}
+    \label{fig:model4_z1_z2}
+  \end{subfigure}
+
   \caption{Model 4 - Latent space visualisation with compactness colourmap.}
   \label{fig:model4_latent_visualisations}
 \end{figure}
+
 
 \subsubsection{VAE Model 5 - 6D Latent Dimension}
 
@@ -786,29 +822,41 @@ Model 4 expands upon the previous with an additional latent dimension, for a tot
 
 \begin{figure}[H]
   \centering
-  \begin{subfigure}{0.8\textwidth}
-  \centering
-    \includegraphics[height=0.3\textheight]{figures/VAEmodels/model4/varying_z2_z4_fixed_z1=0.0_z3=0.0_z5=0.0.png}
-    \caption{$Z_1=0.0 \; Z_3=0.0 \; Z_5=0.0$}
-    \label{fig:model4_fixz1z3z5_latent}
+
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/VAEmodels/model5/varying_z2_z3_fixed_z1=0.0_z4=0.0_z5=0.0_z6=0.0.png}
+    \caption{Latent dimensions $Z_2$ and $Z_3$}
+    \label{fig:model5_z2_z3}
   \end{subfigure}
-  \par\medskip
-  \begin{subfigure}{0.8\textwidth}
-  \centering
-    \includegraphics[height=0.3\textheight]{figures/VAEmodels/model4/varying_z2_z3_fixed_z1=0.0_z4=0.0_z5=0.0.png}
-    \caption{$Z_1=0.0 \; Z_4=0.0 \; Z_5=0.0$}
-    \label{fig:model4_fixz1z4z5_latent}
+  \hfill
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/VAEmodels/model5/varying_z3_z6_fixed_z1=0.0_z2=0.0_z4=0.0_z5=0.0.png}
+    \caption{Latent dimensions $Z_3$ and $Z_6$}
+    \label{fig:model5_z3_z6}
   \end{subfigure}
-  \par\medskip
-  \begin{subfigure}{0.8\textwidth}
-  \centering
-    \includegraphics[height=0.3\textheight]{figures/VAEmodels/model4/varying_z2_z5_fixed_z1=0.0_z3=0.0_z4=0.0.png}
-    \caption{$Z_1=0.0 \; Z_3=0.0 \; Z_4=0.0$}
-    \label{fig:model4_fixzz1z3z4_latent}
+
+  \vspace{0.5em}
+
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/VAEmodels/model5/varying_z1_z3_fixed_z2=0.0_z4=0.0_z5=0.0_z6=0.0.png}
+    \caption{Latent dimensions $Z_1$ and $Z_3$}
+    \label{fig:model5_z1_z3}
   \end{subfigure}
-  \caption{Model 4 - Latent space visualisation with compactness colourmap.}
-  \label{fig:model4_latent_visualisations}
+  \hfill
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/VAEmodels/model5/varying_z1_z4_fixed_z2=0.0_z3=0.0_z5=0.0_z6=0.0.png}
+    \caption{Latent dimensions $Z_1$ and $Z_4$}
+    \label{fig:model5_z1_z4}
+  \end{subfigure}
+
+  \caption{Model 5 - Latent space visualisation with compactness colourmap.}
+  \label{fig:model5_latent_visualisations}
 \end{figure}
+
 
 \subsection{Genetic Algorithm}
 In demonstrating the effect of transforming design problems to a low-dimensional latent representation prior to performing optimisation, we first demonstrate the capability of a genetic algorithm to optimise for the geometric compactness metric (Equation~\eqref{eq:compactness}) for high-dimensional, random noise shapes defined by a series of nodes of fixed connectivity as described in (insert Section 2.1 ref here). While the end use-case, and as will be demonstrated in this research, is to explore designs that reflect realistic samples, we will first approach the problem of random noise, an arguably more complex geometric challenge and starting condition to solve for. Examples of such starting representations are shown in Figure~\ref{fig:random_noise_ga_shapes}. We begin with an initial resolution (i.e, nodes defining the random polygons) of 10 and apply the genetic algorithm on polygons up to resolution of 300 nodes (see Table~\ref{tab:GA_models_original}). Despite the shapes being represented on a 2D manifold, the dimensionality of the design problem and hence the design space is defined by the number of varying parameters, or number of geometric nodes in the case of this research and it is expected that as we move towards increasing resolutions, the efficacy of the GA will become limited. After motivating the necessity to explore more efficient design-space representations, we then perform optimisation via the genetic algorithm directly on the latent space, whereby the genes of the individuals are represented by the latent values in the latent vectors for each $L$-dimensional latent representation starting from $L=2$ up to $L=6$ - thus realising a significant reduction in the dimensionality of the design space.
