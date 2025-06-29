@@ -865,14 +865,14 @@ We present 4 of the configurations for latent dimensions in Figure~\ref{fig:mode
 
 
 \subsection{Genetic Algorithm}
-To demonstrate the effect of transforming design problems into a low-dimensional latent representation prior to performing optimisation, we first demonstrate the capability of a genetic algorithm to optimise for the geometric compactness metric (Equation~\eqref{eq:compactness}) for high-dimensional, random noise shapes defined by a series of nodes of fixed connectivity as described in Section~\ref{Geometry}. While the end use-case, and as will be demonstrated in this research, is to explore designs that reflect realistic samples, we will first approach the problem of random noise, an arguably more complex geometric challenge and starting condition to solve for. Examples of such starting representations are shown in Figure~\ref{fig:random_noise_ga_shapes}. We begin with an initial resolution (i.e, nodes defining the random polygons) of 10 and apply the genetic algorithm on polygons up to resolution of 300 nodes (see Table~\ref{tab:GA_models_original}). Despite the shapes being represented on a 2D manifold, the dimensionality of the design problem and hence the design space is defined by the number of varying parameters, or number of geometric nodes in the case of this research and it is expected that as we move towards increasing resolutions, the effectiveness of the GA to optimise for compactness will deteriorate. After motivating the necessity to explore more efficient design-space representations, we proceed to perform optimisation via the genetic algorithm directly in the latent space, whereby the genes of the individuals are represented by the latent values of the latent vectors for each $L$-dimensional latent representation starting from $L=2$ up to $L=6$. In contrast to the 200-node representation, this yields a significant reduction in the dimensionality of the design space.
+To demonstrate the effect of transforming design problems into a low-dimensional latent representation prior to performing optimisation, we first demonstrate the capability of a genetic algorithm to optimise for the geometric compactness metric (Equation~\eqref{eq:compactness}) for high-dimensional, random noise shapes defined by a series of nodes of fixed connectivity as described in Section~\ref{Geometry}. While the end use-case, and as is demonstrated in this research, is to explore designs that reflect realistic samples, we will first approach the problem of random noise, an arguably more complex geometric challenge and starting condition to solve for. Examples of such starting representations are shown in Figure~\ref{fig:random_noise_ga_shapes}. We begin with an initial resolution (i.e, nodes defining the random polygons) of 10 and apply the genetic algorithm on polygons up to resolution of 300 nodes (see Table~\ref{tab:GA_models_original}). Despite the shapes being represented on a 2D manifold, the dimensionality of the design problem and hence the design space is defined by the number of varying parameters, or number of geometric nodes in the case of this research and it is expected that as we move towards increasing resolutions, the effectiveness of the GA to optimise for compactness will deteriorate. After motivating the necessity to explore more efficient design-space representations, we proceed to perform optimisation via the genetic algorithm directly in the latent space, whereby the genes of the individuals are represented by the latent values of the latent vectors for each $L$-dimensional latent representation starting from $L=2$ up to $L=6$. In contrast to the 200-node representation, this yields a significant reduction in the dimensionality of the design space.
 
-\subsubsection{Genetic Algorithm - Random Polygon Results}
-The following section present the initial starting population of random polygons and samples of the final population after 1000 generations of the genetic algorithm for each of the GAs lsted in Table~\ref{tab:GA_models_original}.
+\subsubsection{Genetic Algorithm - Random Polygon Results}\label{random_polygon_ga}
+The following section presents the initial starting population of random polygons and samples of the final population after 1000 generations of the genetic algorithm for each of the GAs lsted in Table~\ref{tab:GA_models_original}.
 
 \subsubsection*{GA1 - Random Noise Polygon: Resolution = 10; Number of Parents = 4; Initial Population = 100}
 
-In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial population of random noise shapes, defined by 10 nodes in 2D. The genetic algorithm, GA1, is applied to an initial population of 100 and evolved for 1000 generations to these random noise shapes. Figure~\ref{fig:GA1_final} shows a sample of the resultant shapes after the 1000th generation. The sample demonstrates the GA has iterated towards circular-like geometries, only limited by the resolution of 10 not permitting smooth sided circles. The fitness curve in Figure~\ref{fig:GA1_fitness_curve} displays a maximum fitness value of ~0.075, which is defined as the inverse of the compactness metric - this maximum is reached after 100 generations of GA evolution. Shapes with higher fitness values will tend towards circles, if defined by a suitably high number of nodes. Similarly, in Figure~\ref{fig:GA2_before_after_GA} we increase the number of parents used during each evolution to 10 from 4 to increase the diversity of shapes that are considered for mutation and crossover at each evolution. A similar result is seen, with circular like shapes realised after 1000 generations, and a fitness value of ~0.075, though occurring after 50 generations.
+In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial population of random noise shapes, defined by 10 nodes in 2D. The genetic algorithm, GA1, is applied to an initial population of 100 and evolved for 1000 generations to these random noise shapes. Figure~\ref{fig:GA1_final} shows a sample of the resultant shapes after the 1000th generation. The sample demonstrates the GA has iterated towards circular-like geometries, only limited by the resolution of 10 not permitting smooth sided circles. The fitness curve in Figure~\ref{fig:GA1_fitness_curve} displays a maximum fitness value of ~0.075, which is defined as the inverse of the compactness metric - this maximum is reached after 100 generations of GA evolution. Shapes with higher fitness values will tend towards circles, if defined by a suitably high number of nodes. 
 
 \begin{figure}[H]
     \centering
@@ -901,6 +901,8 @@ In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial popu
 \end{figure}
 
 \subsubsection*{GA2 - Random Noise Polygon: Resolution = 10; Number of Parents = 10; Initial Population = 100}
+
+Similarly, in Figure~\ref{fig:GA2_before_after_GA} for GA2, we increase the number of parents used during each evolution to 10 from 4 to increase the diversity of shapes that are considered for mutation and crossover at each evolution. The resolution and initial population size is maintained. A similar result is seen, with circular like shapes realised after 1000 generations, and a fitness value of ~0.075, though occurring after 50 generations as seen in Figure~\ref{fig:GA2_fitness}
 
 \begin{figure}[H]
     \centering
@@ -931,7 +933,7 @@ In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial popu
 
 
 \subsubsection*{GA3 - Random Noise Polygon: Resolution = 30; Number of Parents = 10; Initial Population = 100}
-
+GA3 further increases the resolution of the initial population, with a total of 30 nodes defining the geometries. Figure~\ref{fig:GA3_before_after_GA} shows samples of the the initial and final population afte 100 evolutions, with Figure~\ref{fig:GA3_fitness} showing a final fitness value of 0.075, but being achieved after later evolutions (~800).
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
@@ -947,18 +949,19 @@ In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial popu
         \caption{After 1000 generations of GA evolution.}
         \label{fig:GA3_final}
     \end{subfigure}
-    \caption{GA2 starting and final population after optimising for compactness metric.}
+    \caption{GA3 starting and final population after optimising for compactness metric.}
     \label{fig:GA3_before_after_GA}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\linewidth]{figures/GAResults/GA3/1000gens_10pars_100initpop_5pcent_mut.png}
-    \caption{GA2 Genetic Algorithm Fitness Score Evolution}
+    \caption{GA3 Genetic Algorithm Fitness Score Evolution}
     \label{fig:GA3_fitness}
 \end{figure}
 
 \subsubsection*{GA4 - Random Noise Polygon: Resolution = 50; Number of Parents = 10; Initial Population = 100}
+When increasing the resolution to 50 nodes, maintaining an initial population of 100 and 10 parents in the GA evolution, we see the final generation being less reflected of a circular design. This is evident in Figure~\ref{fig:GA4_before_after_GA} and the final fitness reaching only 0.07 after 1000 evolutions in the fitness curve, shown in Figure~\ref{fig:GA4_fitness}. The resultant shapes also demonstrate block like artefacts, where the optimised nodes have fixated around specific points, such as those seen accumulated in the top left of Figure~\ref{fig:GA4_final}.
 
 \begin{figure}[H]
     \centering
@@ -987,6 +990,8 @@ In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial popu
 \end{figure}
 
 \subsubsection*{GA5 - Random Noise Polygon: Resolution = 100; Number of Parents = 10; Initial Population = 100}
+Doubling the resolution of the design problem to 100 reveals a significant drop off in the ability of the genetic algorithm to optimise for compactness, despite evolving for 1000 generations. For such high resolutions, it is expected that increasing the initial population, or evolving for more generations may suffice to find an optimal solution, however, in the context of engineering design this is not always a tractable luxury to assume. Often data is sparse, or computationally expensive to generate, and therefore evaluating so many samples is not possible.
+The fitness curve also demonstrates deterioration in performance with a final maximum fitness value in the population of 0.06 - a 20 \% reduction in fitness. In engineering, this may correspond to a 20\% reduction in component performance, which could easily translate into a equal or greater loss (due to multi-physics effects) in efficiency. For example, a loss of 20\% aero-efficiency in turbo-machinery components could be detrimental to engine performance.
 
 \begin{figure}[H]
     \centering
@@ -1015,6 +1020,8 @@ In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial popu
 \end{figure}
 
 \subsubsection*{GA6 - Random Noise Polygon: Resolution = 200; Number of Parents = 4; Initial Population = 100}
+
+In Figure~\ref{fig:GA6_before_after_GA}, we see the final generation is only a variation of the original noise with the GA aggregating on a final solution that places a noticeable fraction of the geometry nodes in one region. The fitness curve in this example has not plateaued at all, with a continuously increasing curve that only surpasses 0.03 after 1000 generations. This reflects a greater than 50\% reduction in fitness compared to the original low-dimensional optimisation achieved in GA1, seen in Figure~\ref{fig:GA1_before_after_GA}. We purposely demonstrate the performance here with a low number of parents used in the population competition during crossover, reflecting exploitation versus exploration. If we increase the number of parents to 20 while maintaining the same initial population size and number of generations, Figure~\ref{fig:GA8_before_after_GA} and Figure~\ref{fig:GA8_fitness} demonstrates improvement in the GA's ability to iterate towards a higher fitness value, with a final fitness of 0.07 after 1000 generations.
 
 \begin{figure}[H]
     \centering
@@ -1126,65 +1133,89 @@ In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial popu
     \label{fig:GA9_fitness}
 \end{figure}
 
-\subsubsection*{GA10 - Random Noise Polygon: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+% \subsubsection*{GA10 - Random Noise Polygon: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
 
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/GAResults/GA10/300point_initial_pop.png}
-        \caption{Initial starting population}
-        \label{fig:GA10_starting}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/GAResults/GA10/1000gens_10pars_1000initpop_5pcent_mut.png}
-        \caption{After 1000 generations of GA evolution.}
-        \label{fig:GA10_final}
-    \end{subfigure}
-    \caption{GA10 starting and final population after optimising for compactness metric.}
-    \label{fig:GA10_before_after_GA}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \begin{subfigure}[b]{0.45\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{figures/GAResults/GA10/300point_initial_pop.png}
+%         \caption{Initial starting population}
+%         \label{fig:GA10_starting}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.45\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{figures/GAResults/GA10/1000gens_10pars_1000initpop_5pcent_mut.png}
+%         \caption{After 1000 generations of GA evolution.}
+%         \label{fig:GA10_final}
+%     \end{subfigure}
+%     \caption{GA10 starting and final population after optimising for compactness metric.}
+%     \label{fig:GA10_before_after_GA}
+% \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA10/fitness_curve.png}
-    \caption{GA10 Genetic Algorithm Fitness Score Evolution}
-    \label{fig:GA10_fitness}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.75\linewidth]{figures/GAResults/GA10/fitness_curve.png}
+%     \caption{GA10 Genetic Algorithm Fitness Score Evolution}
+%     \label{fig:GA10_fitness}
+% \end{figure}
 
 \subsubsection{Genetic Algorithm - Latent Representation Results}
+The following results demonstrate the evolution of the genetic algorithm for different latent dimension representations starting with 2-dimensions. For each case, we present samples from the initial starting population, as well as the generated shapes after 1000 generations when the GA is run on both the original high-design space, denoted 'original' and the latent representation 'latent'. The fitness curve is also presented to demonstrate the maximum fitness value achieved after 1000 generations in both the original and latent representation.
 
-\subsubsection*{GA11 - 2D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+The initial population used in this section are obtained by sampling latent values from the latent dimensions which are then decoded by the trained VAE, generating novel designs. By using VAE generated shapes, we maintain a population that reflects realistic design points while still retaining novelty in the population due to the generative nature of the VAE. Unlike in section~\ref{random_polygon_ga}, the initial population is close to, or contain features that more closely reflect the final desired design, since the shapes are not defined by random noise, but generated by learned VAE features. As a result, the evolution of shapes is less significant in terms of visual change, and the fitness metric and is more reflective of fine-tuning to obtain an optimised fitness value. In engineering design, this may correspond to expert-driven heuristics informing the global shape, and the optimisation framework proceeds to optimise for specific features or characteristics (e.g., volume fraction, or thickness).
+
+\subsubsection*{GA11 - 2D Latent Vector Representation: Original Resolution = 200; Number of Parents = 10; Initial Population = 50}
+
+Figure~\ref{fig:GA11_before_after_GA} presents a sample of the initial 50 population of random shapes generated by the 2D VAE model (Model 1 in Table~\ref{tab:vae_models}). It is observed that despite being generated from the VAE trained on and realistic shape categories, the generated shapes do contain some abstract designs - though this is expected to add some variability and enable exploration amongst the population. After evolving the GA for 100 generations, the final optimised shapes, with respect to fitness, are displayed in Figure~\ref{fig:GA11__latent_final} and Figure~\ref{fig:GA11_original_final} for the latent and original design spaces respectively.
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/GAResults/GA11/50_init_pop.png}
         \caption{Initial starting population}
         \label{fig:GA11_starting}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/GAResults/GA11/latent/final_generation.png}
-        \caption{After 1000 generations of GA evolution.}
-        \label{fig:GA11_final}
+        \caption{Latent: Final generations}
+        \label{fig:GA11__latent_final}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA11/original/original_final_gen.png}
+        \caption{Original: Final Generation}
+        \label{fig:GA11_original_final}
     \end{subfigure}
     \caption{GA11 starting and final population after optimising for compactness metric.}
     \label{fig:GA11_before_after_GA}
 \end{figure}
 
+The fitness curves are shown in Figure~\ref{fig:GA11_latent_fitness} and \ref{fig:GA11_original_fitness} shows how in the latent dimension, the GA is able to increase the maximum fitness value in the initial population from 0.07905 to 0.07925 - a marginal increase of ~0.25\% in fitness value, while when performed on the original manifold, the fitness value decreases from 0.0709 to 0.0100 after 100 generations, this is reflected in a final population of unphysical noisy shapes as shown in \ref{fig:GA11_original_final}. The maximum fitness value is achieved after less than 10 generations, though an additional marginal increase is seen at 40 generations, for the latent model in Figure~\ref{fig:GA11_latent_fitness}.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\linewidth]{figures/GAResults/GA11/latent/100gen_fitness.png}
-    \caption{GA11 Genetic Algorithm Fitness Score Evolution}
-    \label{fig:GA11_fitness}
+    \caption{GA11 - Latent: Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA11_latent_fitness}
 \end{figure}
 
-\subsubsection*{GA12 - 2D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA11/original/original_200n_fitness.png}
+    \caption{GA11 - Original: Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA11_original_fitness}
+\end{figure}
+
+\subsubsection*{GA12 - 2D Latent Vector Representation: Resolution = 200; Number of Parents = 10; Initial Population = 10}
+
+We also apply the GA to the same 2D latent model, but with a reduced initial population to reflect a limited size initial population due to intractable, or computationally expensive evaluations, which is typical in engineering design workflows where only final design iterations are sentenced to numerical simulation, or physical testing. 
+Figure~\ref{fig:GA12_starting} shows all 10 samples in the initial population and Figure~\ref{fig:GA12_final} shows the final population after 100 generations of evolution. We see that the final shapes are not present in the initial population and demonstrate a more circular design. The fitness curve in Figure~\ref{fig:GA12_fitness} shows an increase from 0.0765 to 0.0790 fitness, again a marginal ($\lt$1.0\%) increase, though noticeable in the physical final shape. This increase in compactness is achieved after the first generation. 
 
 \begin{figure}[H]
     \centering
@@ -1208,39 +1239,58 @@ In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial popu
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\linewidth]{figures/GAResults/GA12/100gen_fitness.png}
-    \caption{GA12 Genetic Algorithm Fitness Score Evolution}
+    \caption{GA12 - Latent: Genetic Algorithm Fitness Score Evolution}
     \label{fig:GA12_fitness}
 \end{figure}
 
-\subsubsection*{GA13 - 3D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+
+\subsubsection*{GA13 - 3D Latent Vector Representation: Resolution = 200; Number of Parents = 10; Initial Population = 50}
+
+Increasing the latent dimension to 3D now provides an additional gene in the genetic algorithm for which crossover and mutation can occur. The initial population is created by sampling latent values for the 3D latent dimensions for 50 samples, defining the initial population (shown in Figure~\ref{fig:GA13_starting}). After 100 generations, we observe a sample of the 50 final generation in Figure~\ref{fig:GA13_latent_final} after the GA is performed over the three latent dimensions. As previously observed, the final population samples closely reflect circular designs. Whereas when the GA is performed in the original design space, samples from the final generation are shown in Figure~\ref{fig:GA13_original_final}. The GA is observed to have agglomerated a large number of the 200 nodes to a confined region, as if getting stuck on a local minima in the GA loop, whereby the crossover and mutation is unable to perturb the points effectively to break free of this region.
+
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/GAResults/GA13/50_init_pop.png}
         \caption{Initial starting population}
         \label{fig:GA13_starting}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/GAResults/GA13/latent/final_generation.png}
-        \caption{After 1000 generations of GA evolution.}
-        \label{fig:GA13_final}
+        \caption{Latent: Final Generation}
+        \label{fig:GA13_latent_final}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA13/original/original_final_gen.png}
+        \caption{Original: Final Generation}
+        \label{fig:GA13_original_final}
     \end{subfigure}
     \caption{GA13 starting and final population after optimising for compactness metric.}
     \label{fig:GA13_before_after_GA}
 \end{figure}
+The fitness curves in Figure~\ref{fig:GA13_latent_fitness} and \ref{fig:GA13_original_fitness} show the GAs ability to increase the fitness value from ~0.0786 to above 0.0794 in the latent space, while causing a drop to less than 0.0100 after 100 generations in the original design space. The maximum fitness value is also achieved after only 10 generations in the latent space. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\linewidth]{figures/GAResults/GA13/latent/100gen_fitness.png}
     \caption{GA13 Genetic Algorithm Fitness Score Evolution}
-    \label{fig:GA13_fitness}
+    \label{fig:GA13_latent_fitness}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA13/original/original_fitness_plot.png}
+    \caption{GA13 Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA13_original_fitness}
 \end{figure}
 
-\subsubsection*{GA14 - 3D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+\subsubsection*{GA14 - 3D Latent Vector Representation: Resolution = 200; Number of Parents = 10; Initial Population = 10}
+Reducing the starting population 10 and running the GA for 100 generations reveals an increase in the maximum fitness value from ~0.0774 to 0.0780 as shown in Figure~\ref{fig:GA14_fitness}, however, the initial population used in this example is less diverse, and only one of the initial population demonstrating some features similar to a circular design. It is observed that visually, the final population of optimised shapes very closely match that of the circular like shape in the initial population, with some very minor deviations around the edge. This lack of diversity in the original population is reflected by lack of novelty or change in the final population.
 
 \begin{figure}[H]
     \centering
@@ -1268,22 +1318,32 @@ In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial popu
     \label{fig:GA14_fitness}
 \end{figure}
 
-\subsubsection*{GA15 - 3D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+\subsubsection*{GA15 - 4D Latent Vector Representation: Original Resolution = 200; Number of Parents = 10; Initial Population = 50}
+
+A similar result is obtained when performing the GA optimisation on a 4D latent representation, where the final generation after optimisation tends towards circular designs (see Figure~\ref{fig:GA15_latent_final} and the original design space results in abstract shapes, with points fixated on a particular region (see Figure~\ref{fig:GA15_origina_final}).
+Observing the fitness curve (Figure~\ref{fig:GA15_latent_final}) does however demonstrate the maximum fitness value is achieved more incrementally, with a gradual increase from ~0.0778 to ~0.0790 between generations 1 and 10, compared to the almost immediate increase seen for the 2D model and 3D latent dimensions. Similarly, when performed on the high-dimensional design space, the GA results in a significant drop in the fitness function towards 0, and then a gradual increase reaching ~0.01 fitness value after 100 generations.
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/GAResults/GA15/50initial_pop.png}
         \caption{Initial starting population}
         \label{fig:GA15_starting}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/GAResults/GA15/latent/final_generation.png}
-        \caption{After 1000 generations of GA evolution.}
-        \label{fig:GA15_final}
+        \caption{Latent: Final Generation}
+        \label{fig:GA15_latent_final}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA15/original/original_final_gen.png}
+        \caption{Original: Final Generation}
+        \label{fig:GA15_origina_final}
     \end{subfigure}
     \caption{GA15 starting and final population after optimising for compactness metric.}
     \label{fig:GA15_before_after_GA}
@@ -1292,11 +1352,20 @@ In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial popu
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\linewidth]{figures/GAResults/GA15/latent/100gens_10pars_5pcentmut.png}
-    \caption{GA15 Genetic Algorithm Fitness Score Evolution}
+    \caption{GA15 Genetic Algorithm Fitness Score Evolution (latent design space)}
     \label{fig:GA15_fitness}
 \end{figure}
 
-\subsubsection*{GA16 - 3D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA15/original/original_fitness.png}
+    \caption{GA15 Genetic Algorithm Fitness Score Evolution (original design space)}
+    \label{fig:GA15_fitness}
+\end{figure}
+
+\subsubsection*{GA16 - 4D Latent Vector Representation: Resolution = 200; Number of Parents = 10; Initial Population = 10}
+
+When deploying the GA to the 4D latent representation with an initial population of 10 samples, we see after 100 generations the final generation always identically reflect mirror the circular like shape in the initial population in Figure~\ref{fig:GA16_starting}, despite the fitness curve in Figure~\ref{fig:GA16_fitness} showing an increase over the 100 generations to a maximum of ~0.07855, though with no plateau in the fitness value is observed.
 
 \begin{figure}[H]
     \centering
@@ -1324,21 +1393,30 @@ In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial popu
     \label{fig:GA16_fitness}
 \end{figure}
 
-\subsubsection*{GA17 - 3D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+\subsubsection*{GA17 - 5D Latent Vector Representation: Resolution = 200; Number of Parents = 10; Initial Population = 50}
+
+The initial population and final populations after 100 generations are shown in Figure~\ref{fig:GA17_before_after_GA} for the latent representation and original. It is observed that the final generation after performing GA over the 5 latent dimensions results in circular like shapes, similar to what has been observed before, while the original high-dimensional shapes fail to achieve an optimal fitness value after 100 generations.
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/GAResults/GA17/50_init_pop.png}
         \caption{Initial starting population}
         \label{fig:GA17_starting}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/GAResults/GA17/latent/final_generation.png}
-        \caption{After 1000 generations of GA evolution.}
+        \caption{Latent: Final Generation}
+        \label{fig:GA17_final}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA17/original/original_final_gen.png}
+        \caption{Original: Final Generation}
         \label{fig:GA17_final}
     \end{subfigure}
     \caption{GA17 starting and final population after optimising for compactness metric.}
@@ -1348,11 +1426,17 @@ In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial popu
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\linewidth]{figures/GAResults/GA17/latent/100gen_fitness.png}
-    \caption{GA17 Genetic Algorithm Fitness Score Evolution}
-    \label{fig:GA17_fitness}
+    \caption{GA17 - Latent: Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA17_latent_fitness}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/GAResults/GA17/original/original_fitness.png}
+    \caption{GA17 - Original: Genetic Algorithm Fitness Score Evolution}
+    \label{fig:GA17_original_fitness}
 \end{figure}
 
-\subsubsection*{GA18 - 3D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+\subsubsection*{GA18 - 5D Latent Vector Representation: Resolution = 200; Number of Parents = 10; Initial Population = 10}
 
 \begin{figure}[H]
     \centering
@@ -1369,7 +1453,7 @@ In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial popu
         \caption{After 1000 generations of GA evolution.}
         \label{fig:GA18_final}
     \end{subfigure}
-    \caption{GA17 starting and final population after optimising for compactness metric.}
+    \caption{GA18 starting and final population after optimising for compactness metric.}
     \label{fig:GA18_before_after_GA}
 \end{figure}
 
@@ -1380,22 +1464,29 @@ In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial popu
     \label{fig:GA18_fitness}
 \end{figure}
 
-\subsubsection*{GA19 - 6D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+\subsubsection*{GA19 - 6D Latent Vector Representation: Resolution = 200; Number of Parents = 10; Initial Population = 50}
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/GAResults/GA19/50init_pop.png}
         \caption{Initial starting population}
         \label{fig:GA19_starting}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/GAResults/GA19/latent/final_generation.png}
         \caption{After 1000 generations of GA evolution.}
-        \label{fig:GA19_final}
+        \label{fig:GA19_latent_final}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/GAResults/GA19/original/original_final_gen.png}
+        \caption{Original: Final Generation}
+        \label{fig:GA19_original_final}
     \end{subfigure}
     \caption{GA19 starting and final population after optimising for compactness metric.}
     \label{fig:GA19_before_after_GA}
@@ -1408,7 +1499,7 @@ In Figure~\ref{fig:GA1_before_after_GA}, we present a sample of the initial popu
     \label{fig:GA19_fitness}
 \end{figure}
 
-\subsubsection*{GA20 - 6D Latent Vector Representation: Resolution = 300; Number of Parents = 10; Initial Population = 1000}
+\subsubsection*{GA20 - 6D Latent Vector Representation: Resolution = 200; Number of Parents = 10; Initial Population = 10}
 
 \begin{figure}[H]
     \centering
