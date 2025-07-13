@@ -660,29 +660,30 @@ To visualise the resultant generated shapes, we present visualisations over 2 la
 
 \begin{figure}[H]
   \centering
-  \begin{subfigure}{0.8\textwidth}
-  \centering
-    \includegraphics[height=0.3\textheight]{figures/VAEmodels/model2/fix_z1_0.0.png}
+  \begin{subfigure}{0.3\textwidth}
+    \centering
+    \includegraphics[height=0.2\textheight]{figures/VAEmodels/model2/fix_z1_0.0.png}
     \caption{$Z_1=0.0$}
     \label{fig:model2_fixz1_latent}
   \end{subfigure}
-  \par\medskip
-  \begin{subfigure}{0.8\textwidth}
-  \centering
-    \includegraphics[height=0.3\textheight]{figures/VAEmodels/model2/fix_z2_0.0.png}
+  \hfill
+  \begin{subfigure}{0.3\textwidth}
+    \centering
+    \includegraphics[height=0.2\textheight]{figures/VAEmodels/model2/fix_z2_0.0.png}
     \caption{$Z_2=0.0$}
     \label{fig:model2_fixz2_latent}
   \end{subfigure}
-  \par\medskip
-  \begin{subfigure}{0.8\textwidth}
-  \centering
-    \includegraphics[height=0.3\textheight]{figures/VAEmodels/model2/fix_z3_0.0.png}
-    \caption{$Z_3 = 0.0$}
+  \hfill
+  \begin{subfigure}{0.3\textwidth}
+    \centering
+    \includegraphics[height=0.2\textheight]{figures/VAEmodels/model2/fix_z3_0.0.png}
+    \caption{$Z_3=0.0$}
     \label{fig:model2_fixz3_latent}
   \end{subfigure}
   \caption{Model 2 - Latent space visualisation with compactness colourmap.}
   \label{fig:model2_latent_vis}
 \end{figure}
+
 
 \subsubsection{VAE Model 3 - 4D Latent Dimension}
 Increasing the dimension of the latent to 4-dimensions provide an additional degrees of freedom, adding an additional dimension over which salient information of the original data is stored in the form of a latent value. Despite increasing the latent vector dimension to 4, we maintain the same model architecture (i.e., number of network layers, and nodes per layer), therefore the number of parameters in the network varies insignificantly (see Table~\ref{tab:vae_models}), and is therefore not expected to necessitate a significant increase in data to support effective training of the VAE. The loss curve for the combined MSE and KL-divergence loss shown in Figure~\ref{fig:model3_loss_plot} reveals similar performance to that seen in the 2D latent and 3D VAE models, whereby the loss falls to $~1000$ within the first 200 epochs of training and remains stable until the 1000th epoch of training.
@@ -1078,6 +1079,8 @@ In Figure~\ref{fig:GA6_before_after_GA}, we see the final generation of GA evolu
 
 \subsubsection*{GA8 - Random Noise Polygon: Resolution = 200; Number of Parents = 20; Initial Population = 1000}
 
+Increasing the initial population to 1000 demonstrates little change in the evolution of the fitness value and final generation of shapes, suggesting that the GA is being limited by the high-dimensionality of the problem, and a signifcantly higher order of magnitude of training samples, or generations would be required to obtain a fully-optimised solution. 
+
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
@@ -1105,7 +1108,7 @@ In Figure~\ref{fig:GA6_before_after_GA}, we see the final generation of GA evolu
 \end{figure}
 
 \subsubsection*{GA9 - Random Noise Polygon: Resolution = 300; Number of Parents = 10; Initial Population = 100}
-Finally, tasking the genetic algorithm with optimising for the compactness of the random noise shapes but with a resolution of 300, we see the GAs inability to resolve towards an optimal fitness value as demonstrated by the increasing fitness curve in Figure~\ref{fig:GA9_fitness}, and abstract final generation of shapes in Figure~\ref{fig:GA9_final}.
+Finally, tasking the genetic algorithm with optimising for the compactness of the random noise shapes but with a resolution of 300, we see the GAs inability to resolve towards an optimal fitness value over 1000 generations as demonstrated by the increasing fitness curve in Figure~\ref{fig:GA9_fitness}, and abstract final generation of shapes in Figure~\ref{fig:GA9_final}. This inability is related to the complexity and volume of the design space resulting from the large number of design variables (geometric nodes), and therefore succumbing to the challenges associated with the curse of dimensionality. 
 
 \begin{figure}[H]
     \centering
@@ -1161,14 +1164,14 @@ Finally, tasking the genetic algorithm with optimising for the compactness of th
 %     \label{fig:GA10_fitness}
 % \end{figure}
 
-\subsubsection{Genetic Algorithm - Latent Representation Results}
-The following results demonstrate the evolution of the genetic algorithm for different latent dimension representations starting with 2-dimensions. The original representation of each shape is defined by 200 nodes. For each case, we present samples from the initial starting population, as well as the generated shapes after 1000 generations when the GA is run on both the original high-design space, denoted 'original' and the latent representation 'latent'. The fitness curve is also presented to demonstrate the maximum fitness value achieved after 1000 generations in both the original and latent representation.
+\subsubsection{Genetic Algorithm - Latent Representation Optimisation Results}
+The following results demonstrate the evolution of the genetic algorithm for different latent dimension representations starting with 2-dimensions. The original representation of each shape is defined by 200 nodes. For each case, we present samples from the initial starting population, as well as the generated shapes after 1000 generations when the GA is run on both the original high-dimensional space, denoted 'original' and the latent representation 'latent'. The fitness curve is also presented to demonstrate the maximum fitness value achieved after 1000 generations in both the original and latent representation.
 
-The initial population used in this section are obtained by sampling latent values from the latent dimensions which are then decoded by the trained VAE, generating novel designs. By using VAE generated shapes, we maintain a population that reflects realistic design points while still retaining novelty in the population due to the generative nature of the VAE. Unlike in section~\ref{random_polygon_ga}, the initial population is close to, or contain features that more closely reflect the final desired design, since the shapes are not defined by random noise, but generated by learned VAE features based upon real shapes. As a result, the evolution of shapes is less significant in terms of visual change and fitness metric and is more reflective of fine-tuning to obtain an optimised fitness value. In engineering design, this may correspond to expert-driven heuristics informing the global shape, and the optimisation framework proceeds to optimise for specific features or characteristics (e.g., volume fraction, or thickness).
+The initial populations used in this section are obtained by sampling latent values from each latent dimension which are then decoded by the trained VAE, generating novel shapes. By using VAE generated shapes, we maintain a population that reflects realistic design points while still retaining novelty in the population due to the generative nature of the VAE and embedding this novelty in this optimisation task. Unlike in section~\ref{random_polygon_ga}, the initial population contains samples that are close to, or contain features that more closely reflect the final desired design, since the shapes are not defined by random noise, but generated by learned VAE features based on real shapes. As a result, the evolution of shapes is less significant in terms of visual change and fitness metric and is more reflective of fine-tuning to obtain an optimised fitness value which more accurately resembles typical engineering workflows. For example, this may correspond to expert knowledge informing the initial global shape population, and the optimisation framework proceeds to optimise for specific features or characteristics (e.g., volume fraction, or thickness).
 
 \subsubsection*{GA11 - 2D Latent Vector Representation: Original Resolution = 200; Number of Parents = 10; Initial Population = 50}
 
-Figure~\ref{fig:GA11_before_after_GA} presents a sample of the initial 50 population of random shapes generated by the 2D VAE model (Model 1 in Table~\ref{tab:vae_models}). It is observed that despite being generated from the VAE trained on realistic shape categories, the generated shapes do contain some abstract designs - though this is expected to add some variability and enable exploration amongst the population. After evolving the GA for 100 generations, the final optimised shapes with respect to fitness are displayed in Figure~\ref{fig:GA11__latent_final} and Figure~\ref{fig:GA11_original_final} for the latent and original design spaces respectively.
+Figure~\ref{fig:GA11_before_after_GA} presents a sample of the initial 50 population of random shapes generated by the 2D VAE model (Model 1 in Table~\ref{tab:vae_models}). It is observed that despite being generated from the VAE trained on realistic shape categories, the generated shapes do contain some abstract designs - though this is expected to add some beneficial variability in the population to encourage exploration. After evolving the GA for 100 generations, the final optimised shapes with respect to fitness are displayed in Figure~\ref{fig:GA11__latent_final} and Figure~\ref{fig:GA11_original_final} for the latent and original design spaces respectively.
 
 \begin{figure}[H]
     \centering
@@ -1196,7 +1199,7 @@ Figure~\ref{fig:GA11_before_after_GA} presents a sample of the initial 50 popula
     \label{fig:GA11_before_after_GA}
 \end{figure}
 
-The fitness curves  shown in Figure~\ref{fig:GA11_latent_fitness} and \ref{fig:GA11_original_fitness} displays how in the latent dimension, the GA is able to increase the maximum fitness value in the initial population from 0.07905 to 0.07925 - a marginal increase of ~0.25\% in fitness value, while when performed on the original manifold, the fitness value decreases from 0.0709 to 0.0100 after 100 generations, this is reflected in a final population of unrealistic, noise as shown in \ref{fig:GA11_original_final}. The maximum fitness value is achieved after $\lt$ 10 generations, though an additional marginal increase is seen at 40 generations, for the latent model in Figure~\ref{fig:GA11_latent_fitness}.
+The fitness curves  shown in Figure~\ref{fig:GA11_latent_fitness} and \ref{fig:GA11_original_fitness} displays how in the latent dimension, the GA is able to increase the maximum fitness value in the initial population from 0.07905 to 0.07925 - a marginal increase of ~0.25\% in fitness value, while when performed on the original manifold, the fitness value decreases from 0.0709 to 0.0100 after 100 generations, this is reflected in a final population of erroneous shapes as shown in \ref{fig:GA11_original_final}. The maximum fitness value is achieved after $<10$ generations, though an additional marginal increase is seen at 40 generations, for the latent model in Figure~\ref{fig:GA11_latent_fitness}.
 
 \begin{figure}[H]
     \centering
@@ -1215,7 +1218,7 @@ The fitness curves  shown in Figure~\ref{fig:GA11_latent_fitness} and \ref{fig:G
 \subsubsection*{GA12 - 2D Latent Vector Representation: Resolution = 200; Number of Parents = 10; Initial Population = 10}
 
 We also apply the GA to the same 2D latent model, but with a reduced initial population to reflect a limited size initial population due to intractable, or computationally expensive evaluations, which is typical in engineering design workflows where only final design iterations are sentenced to numerical simulation, or physical testing. 
-Figure~\ref{fig:GA12_starting} shows all 10 samples in the initial population and Figure~\ref{fig:GA12_final} shows the final population after 100 generations of evolution. We see that the final shapes are not present in the initial population and demonstrate a more circular design. The fitness curve in Figure~\ref{fig:GA12_fitness} shows an increase from 0.0765 to 0.0790 fitness, again a marginal ($\lt 1.0\%$) increase, though noticeable in the physical final shape. This increase in compactness is achieved after the first generation.
+Figure~\ref{fig:GA12_starting} shows all 10 samples in the initial population and Figure~\ref{fig:GA12_final} shows the final population after 100 generations of evolution. We see that the final shapes are not present in the initial population and demonstrate a more circular design. The fitness curve in Figure~\ref{fig:GA12_fitness} shows an increase from 0.0765 to 0.0790 fitness. This increase in compactness is achieved after the first generation.
 
 \begin{figure}[H]
     \centering
@@ -1246,7 +1249,7 @@ Figure~\ref{fig:GA12_starting} shows all 10 samples in the initial population an
 
 \subsubsection*{GA13 - 3D Latent Vector Representation: Resolution = 200; Number of Parents = 10; Initial Population = 50}
 
-Increasing the latent dimension to 3D now provides an additional gene in the genetic algorithm for which crossover and mutation can occur. The initial population is created by sampling latent values for the 3D latent dimensions for 50 samples, defining the initial population (shown in Figure~\ref{fig:GA13_starting}). After 100 generations, we observe a sample of the 50 final generation in Figure~\ref{fig:GA13_latent_final} after the GA is performed over the three latent dimensions. As previously observed, the final population samples for latent samples closely reflect circular designs. Whereas when the GA is performed in the original design space, samples from the final generation are shown in Figure~\ref{fig:GA13_original_final} and results in agglomeration  of nodes in a confined confined region, resulting to unrealistic shapes in context of the initial design space.
+Increasing the latent dimension to 3D now provides an additional gene in the genetic algorithm for which crossover and mutation can occur. The initial population is created by sampling latent values for the 3D latent dimensions for 50 samples, defining the initial population (shown in Figure~\ref{fig:GA13_starting}). After 100 generations, we observe a sample of the 50 final generation in Figure~\ref{fig:GA13_latent_final} after the GA is performed over the three latent dimensions. As previously observed, the final population samples for latent samples closely reflect circular designs. Whereas when the GA is performed in the original design space, samples from the final generation are shown in Figure~\ref{fig:GA13_original_final} and results in agglomeration  of nodes in a confined region, resulting in unrealistic shapes in context of the initial design space and do not maximise utilisation of the available nodes.
 
 
 \begin{figure}[H]
@@ -1290,7 +1293,7 @@ The fitness curves in Figure~\ref{fig:GA13_latent_fitness} and \ref{fig:GA13_ori
 \end{figure}
 
 \subsubsection*{GA14 - 3D Latent Vector Representation: Resolution = 200; Number of Parents = 10; Initial Population = 10}
-Reducing the starting population to 10 and running the GA for 100 generations reveals an increase in the maximum fitness value from ~0.0774 to 0.0780 as shown in Figure~\ref{fig:GA14_fitness}, however, the initial population used in this example is less diverse, and only one of the samples in the initial population demonstrates features characteristic of circular design. It is observed that visually, the final population of optimised shapes very closely match that of the circular like shape in the initial population, with some very minor deviations around the edge. This lack of diversity in the original population is reflected by lack of novelty in the final population. The final shapes for the original design space samples are abstract, and do not maximise utilisation of the available nodes.
+Reducing the starting population to 10 and running the GA for 100 generations reveals an increase in the maximum fitness value from ~0.0774 to 0.0780 as shown in Figure~\ref{fig:GA14_fitness}, however, the initial population used in this example is less diverse, and only one of the samples in the initial population demonstrates features characteristic of circular design. It is observed that visually, the final population of optimised shapes very closely match that of the circular like shape in the initial population, with some very minor deviations around the edge. This lack of diversity in the original population is reflected by lack of novelty in the final population. 
 
 \begin{figure}[H]
     \centering
@@ -1320,8 +1323,8 @@ Reducing the starting population to 10 and running the GA for 100 generations re
 
 \subsubsection*{GA15 - 4D Latent Vector Representation: Original Resolution = 200; Number of Parents = 10; Initial Population = 50}
 
-A similar result is obtained when performing the GA optimisation on a 4D latent representation, where the final generation after optimisation tends towards circular designs (see Figure~\ref{fig:GA15_latent_final} and the original design space results in abstract shapes, with points fixated on a particular region (see Figure~\ref{fig:GA15_origina_final}).
-Observing the fitness curve (Figure~\ref{fig:GA15_latent_final}) does however demonstrate the maximum fitness value is achieved more incrementally, with a gradual increase from ~0.0778 to ~0.0790 between generations 1 and 10, compared to the almost immediate increase seen for the 2D model and 3D latent dimensions. Similarly, when performed on the high-dimensional design space, the GA results in a significant drop in the fitness function towards 0, and then a gradual increase reaching ~0.01 fitness value after 100 generations.
+A similar result is obtained when performing the GA optimisation on a 4D latent representation, where the final generation after optimisation tends towards circular designs (see Figure~\ref{fig:GA15_latent_final}) and the original design space results in abstract shapes, with points fixated on a particular region (see Figure~\ref{fig:GA15_origina_final}).
+Observing the fitness curve (Figure~\ref{fig:GA15_latent_final}) does however demonstrate the maximum fitness value is achieved more incrementally, with a gradual increase from ~0.0778 to ~0.0790 between generations 1 and 10, compared to the almost immediate increase seen for the 2D model and 3D latent dimensions. Similarly, when performed on the high-dimensional design space, the GA results in a significant drop in the fitness function towards 0, and then a gradual increase reaching $0.01$ fitness value after 100 generations. The final generation for the original design-space shapes reflect charectaristics of triangles, though nodes appear to be underutilised, accumulating around a confined region.
 
 \begin{figure}[H]
     \centering
@@ -1365,7 +1368,7 @@ Observing the fitness curve (Figure~\ref{fig:GA15_latent_final}) does however de
 
 \subsubsection*{GA16 - 4D Latent Vector Representation: Resolution = 200; Number of Parents = 10; Initial Population = 10}
 
-When deploying the GA to the 4D latent representation with an initial population of 10 samples, we see after 100 generations the final generation always identically mirror the circular like shape in the initial population in Figure~\ref{fig:GA16_starting}, despite the fitness curve in Figure~\ref{fig:GA16_fitness} showing an increase over the 100 generations to a maximum of ~0.07855, though no plateau in the fitness value is observed over the 100 generations, indicating the solution is yet to converge.
+When deploying the GA to the 4D latent representation with an initial population of 10 samples, we see after 100 generations the final generation closely mirrors the circular like shape in the initial population in Figure~\ref{fig:GA16_starting}, despite the fitness curve in Figure~\ref{fig:GA16_fitness} showing an increase over the 100 generations to a maximum of ~0.07855, though no plateau in the fitness value is observed over the 100 generations, indicating the solution is yet to converge. We also see this increase in fitness is minimal, starting at 0.07835, rising to 0.07855 after 100 generations.
 
 \begin{figure}[H]
     \centering
@@ -1395,7 +1398,7 @@ When deploying the GA to the 4D latent representation with an initial population
 
 \subsubsection*{GA17 - 5D Latent Vector Representation: Resolution = 200; Number of Parents = 10; Initial Population = 50}
 
-The initial population and final populations after 100 generations are shown in Figure~\ref{fig:GA17_before_after_GA} for the latent representation and original. It is observed that the final generation after performing GA over the 5 latent dimensions results in characteristics of the smoothness of circles, but with indication of pentagon like 5-sided features. The 200-dimension original representation fails to achieve any increase in compactness, with an immediate drop in fitness after a small number of generations shown in Figure~\ref{fig:GA17_original_fitness}.
+In Figure~\ref{fig:GA17_before_after_GA} we observe that the final generation after performing GA over the 5 latent dimensions results in characteristics of the smoothness of circles, but with indication of pentagon like 5-sided features emerging. The 200-dimension original representation fails to achieve any increase in compactness, with an immediate drop in fitness after a small number of generations shown in Figure~\ref{fig:GA17_original_fitness}. Within the shown samples of the initial population, there does appear to be good diversity in the shapes, with a mixture of shapes types present.
 
 \begin{figure}[H]
     \centering
@@ -1437,7 +1440,7 @@ The initial population and final populations after 100 generations are shown in 
 \end{figure}
 
 \subsubsection*{GA18 - 5D Latent Vector Representation: Resolution = 200; Number of Parents = 10; Initial Population = 10}
-We restrict the initial population to 10 and observe a gradual increase in the compactness as shown by the fitness currve in Figure~\ref{fig:GA18_fitness}. We also observe that the final shape design is not present in the original training dataset (Figure~\ref{GA18} therefore indicating the GAs growth towards more circular-like shapes. After 100 generations, there does appear to be a plateau in the fitness value at ~0.0775. Similar to that seen previously, the final shapes demonstrate features described as a rounded pentagon.
+We proceed to restrict the initial population to 10 and re-run the 5D latent representation GA and observe a staggered increase in the compactness as shown by the fitness curve in Figure~\ref{fig:GA18_fitness} with an initial jump in fitness up to around 10 generations, followed by a gradual incremental increase over the remaining generations. We also observe that the final shape design is not present in the original training dataset (Figure~\ref{GA18} therefore indicating the GAs effectiveness at discovery and iterating towards optimised designs. After 100 generations, we witness a plateau in the fitness value at roughly 0.0775 fitness score. Similar to that seen previously, the final shapes demonstrate features described as a rounded pentagon.
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
@@ -1466,7 +1469,7 @@ We restrict the initial population to 10 and observe a gradual increase in the c
 
 \subsubsection*{GA19 - 6D Latent Vector Representation: Resolution = 200; Number of Parents = 10; Initial Population = 50}
 
-Despite having the same number of samples in the initial population, and evolving for 100 generations like previous models, the 6D latent model does not successfully demonstrate final shapes that resemble circular like geometries, with enhanced fitness values. We observe that samples in the final generation have abrupt corners and edges, and lack the smooth curves indicative of optimisation towards circular like-geometries. The samples shown in Figure~\ref{fig:GA19_starting} do not contain any circular, or pentagon like-shapes which have been present in previous populations. While the original design space shapes are abstract, though show the least agglomeration of nodes around a singularity, as shown in Figure~\ref{fig:GA19_original_final}. 
+Despite having the same number of samples in the initial population, and evolving for 100 generations like previous models, the 6D latent model does not successfully demonstrate final shapes that resemble circular like geometries, with enhanced fitness values. We observe that samples in the final generation have sharp corners and edges, and lack the smooth curves indicative of optimisation towards circular like-geometries. The samples shown in Figure~\ref{fig:GA19_starting} do not contain any circular, or pentagon like-shapes which have been present to varying degrees in previous populations. While the original design space shapes are abstract, the final generations presents the least agglomeration of nodes around a singularity, as shown in Figure~\ref{fig:GA19_original_final}, though still being erroneous in the context of the design problem.
 
 \begin{figure}[H]
     \centering
@@ -1494,7 +1497,7 @@ Despite having the same number of samples in the initial population, and evolvin
     \label{fig:GA19_before_after_GA}
 \end{figure}
 
-Despite the final generation shown in Figure~\ref{fig:GA19_latent_final} displaying little convergence towards circular shapes, the fitness curve reveals a final fitness score of 0.0785 after 100 generations, higher than some of the lower-dimensional models that result in more circular appearing shapes. The maximum fitness score is reached at ~80 generations, though there is little discernible increase beyond the first 10 generations.
+Despite the final generation shown in Figure~\ref{fig:GA19_latent_final} displaying little convergence towards circular shapes, the fitness curve reveals a final fitness score of 0.0785 after 100 generations, higher than some of the lower-dimensional models that result in more circular appearing shapes. The maximum fitness score is reached at around 80 generations, though there is little discernible increase beyond the first 10 generations. For the optimisation peformed on the original space, there is a rapid loss of fitness after the first few generations, followed by a very gradual increase over the remaining generations, though only achieving $<0.05$ fitness score at the 100th generation.
 
 \begin{figure}[H]
     \centering
@@ -1538,18 +1541,32 @@ The 6D model deployed to an initial population of 10, shown in Figure~\ref{fig:G
     \label{fig:GA20_fitness}
 \end{figure}
 
+\newpage{}
 
+\section{Discussion}
+Typical engineering design workflows are often characterised by high-dimensional design spaces, attributed to the complexity of such designs not lending themselves to concise and interpretable, low-dimensional representations by conventional methods. For example, complex turbomachinery components are often represented by multi-million node meshes, point clouds or STL files and contain intricate features that cannot be easily described with basic parameterisations. The coordinate points in such formats represents a degree of freedom in design exploration tasks over which to search the design space, thus making the volume of the design space intractably large, limiting the efficient use of simple design space search methodologies (e.g., grid search). One of the most onerous challenges in design optimisation workflows is in finding efficient parametrisations that suitably capture the intricate complexities and variances in designs. Further, to evaluate the performance of sampled designs in this multi-dimensional space, often computationally expensive numerical simulations are performed, with any subsequent changes to the design necessitating further evaluation. For iterative optimisation workflows, this is often infeasible for large numbers of evaluations. The culmination of these two problems is further enhanced by the exponential increase in the size of the design space with increasing dimensions, known as the curse of dimensionality. As a result, effectively sampling this high-dimensional design space becomes more difficult, therefore limiting the effectiveness of optimisation techniques that rely on exploration and discovery to converge to an optimal solution.
+The intent of this research is to develop and demonstrate a solution that enables efficient sampling from an otherwise high-dimensional design space via the projection of engineering problems to a low-dimensional, more efficient manifold, while retaining the ability to recover the original representation for interpretation and utilisation in adjacent or downstream engineering activities. We also seek to clearly demonstrate this low-dimensional representation by embedding it in an appropriately abstracted geometric optimisation problem which is motivated by the aim to avoid occluding the methods effectiveness due to inherent application complexities and enable a clear interpretation of the efficiency gains realised by the reduced dimensionality.
+
+While dimensionality reduction is one of the main objectives, we also seek to enable generative design for the purpose of discovery and therefore aim to build a generative model in the form of a variational autoencoder. Unlike the deterministic counterpart (the autoencoder), the VAE, once trained, results in a low-dimensional latent space that is smooth and continuous. As a result, sampling from and interpolating between designs in the latent space and reconstructing via the trained decoder should result in realistic design that closely match the shapes provided during training. The performance surface associated with designs in this continuous latent space is also smooth, thus enabling continuous interpolation and therefore discovery of novel, performant designs.  
+
+The sought compression to a relatively low number of latent variables is expected to result in a loss of information if using the model to encode and decode a single sample, defined as the difference between $x$ input and $\hat{x}$ output. Increasing the dimensionality of the latent vector to that of the original input is expected to reduce that error. However, since our solution aims to solely provide a reduction in the volume of the design space by means of reducing the number of dimensions, a perfect reconstruction is not necessary for any single sample. Instead, once trained, the solution is used to sample from the multi-dimensional latent distribution, z, and reconstruct back to the original manifold in a discovery type pipeline. An intuitive benefit of this is in providing a means to describe quantitatively how some arbitrary shape such as a pentagon can be transformed into another arbitrary shape, such as semi-circle, by navigating through the D-dimensional latent space - an otherwise difficult task if the shapes are defined by some 200 nodes on an x,y plane. 
+
+The transformation to a low-dimensional representation aims to increase the efficiency and effectiveness of a genetic algorithm-based optimisation pipeline in this research, with the objective of maximising a fitness score which is defined as the inverse of the compactness (see Equation~\eqref{eq:compactness}). The latent vectors are used as the individuals in the genetic algorithm, with each latent value of the vector corresponding to the genes. These genes are subject to mutation and crossover during the genetic algorithm generations guided by exploration and selection of samples in the GAs population. The reduction in the number of variables, hence dimensionality of the design space is expected to lessen the effect of the curse of dimensionality and enable convergence towards an optimum in fewer generations and with a smaller starting population. We also intend to demonstrate that adding additional latent vector dimensions enhances the complexity and diversity of shapes that can be generated since additional degrees of freedom are available to explore designs in the latent space. We interpret this effect intuitively as providing additional levers, each of which control some abstract learnt features during the VAE training where combinations of those learnt features result in a physical and meaningful design. Therefore, the solution we propose should provide more freedom for exploration by the GA when applied on 6D latent representation versus the 2D latent dimension representation that has limited degree of freedom to express a diverse range of shapes.
+
+We highlight VAE Model 1, with 2-dimensions (see Figure~\ref{fig:model1_latent_visualisation}), as the most concise latent model and therefore smallest design space volume. Despite limiting the latent values to [-3,+3], the latent model shows evidence of shapes from each category during VAE training, with a smooth and continuous performance surface for compactness. A complex performance surface is generated, with local minima and maxima. This result suggests that this projection of the design problem into this continuous latent space makes it more amenable to optimisation by methods such as gradient based ones whereby approaches such as the finite difference could be used to determine the slope at any point in the design space and take iterative steps through the space to find a minima or maxima. Performing gradient or gradient free optimisation on reduced dimensions enables efficiency and increases the chances of finding an optimal solution, particularly for heuristic based methods such as the genetic algorithm. 
+
+We observe a common behaviour shown across all the VAE models, whereby there is one apparent single pair of latent dimensions that express the greatest diversity of shapes and therefore generates most complex performance surface. The most informative latent pairings for each model are: Model~2 $Z_2 Z_3$ (\ref{fig:model2_fixz1_latent}), Model~3 (\ref{fig:model3_z3_z4}) $Z_3 Z_4$, Model~4 (\ref{fig:model4_z2_z4}) $Z_2Z_4$ and Model 5 (\ref{fig:model5_z2_z3}) $Z_2Z_3$. These pairings of latent dimensions demonstrate generation of the greatest shape diversity, with interpolation in both dimensions resulting in varying geometries and compactness values. We propose that this observation is the non-linear equivalent of the explained variance of principal components in principal component analysis (PCA), whereby the variance of the underlying linearly separable data is explained in the first two principal components, with additional PCs or latent dimensions providing negligible information gain. These dominant latent dimensions in each case provide an interpretable means to discover new designs by interpolation through the latent space, whereas the static latent pairings would yield little design discovery and therefore render expensive performance evaluations uneconomical in the context of the optimisation workflow. Identification of this finite set of expressive latent variables, would be significantly enabling to constrain the design volume, and alleviate the curse of dimensionality thus enabling efficient exploration.
+
+The method employed fixes all but 2 of the latent dimensions at 0.0 while neglecting other values, thus enabling interpretable visualisation on a 2D manifold. We can’t say for sure that changing the values of the non-visual latent dimensions wouldn’t make the performance surfaces and variety more complex. So, observing only two relevant and expressive latent dimensions may only be valid for fixed values at 0.0. However, having demonstrated a smooth latent space over which designs can be discovered is defined as a success in enabling efficient exploration and optimisation over a low number of design dimensions.
+We also provide the distribution of latent values for each dimension in Figures~\ref{fig:model1_latent_dist}, \ref{fig:model2_latent_dist}, \ref{fig:model3_latent_dist}, \ref{fig:model4_latent_dist} and \ref{fig:model5_latent_dist}. We do not observe any clear trends or correlations between the latent distributions and the corresponding dominant latent dimensions. However, since the values for the latent distribution result from encoding all the training shape data, and using the \textit{reparametrisation trick} to sample latent vectors, these distributions are not deterministic, and re-encoding the training data would yield a different set of distribution. However, all distributions of z-values for each latent dimension are centred around 0. This is a inherent to using a VAE, resulting from using the KL-divergence in the loss function that encourages the encoders output distribution to follow that of a standard normal distribution. The greater the influence of the KL-divergence, the closer to a standard normal distribution we would expect to see. Therefore, our choice of fixing all latent values at 0.0 unless being visualised enforces that we are selecting the theoretical expected latent values and the most likely z-value for these dimensions and therefore a suitable fix point to explore the extremes of the other 2 latent dimensions. Intuitively, this can be though of as generating the most common shape defined by these dimensions, and exploring deviations from this generic shape as a result of only adjust two parameters. In the deployment of these latent models to the genetic algorithm optimisation workflow, we do not constrain any of the latent dimensions to fixed values therefore permitting maximum exploration across all available dimension, and as a result the effect of varying more than just two latent dimensions should naturally emerge. Our results indicate that despite training up to a 6-dimensional latent model, a suitable level of design novelty and diversity can be realised with only 2-dimensions when applied to the specific case of learning generating 2D shapes in our training dataset. Added complexity to the design application is likely to necessitate increasing the number of latent dimensions to effectively capture the intricate details, though we do not perform this assessment in the research conducted and propose that as future work. The flexibility and usability of the low-dimensional latent representation provides freedom for the end-user to only permit some sub-fraction of all possible latent dimensions, despite having trained on all. For example, if coarse design discovery is only necessary, applying optimisation algorithms on only 2 latent dimensions may enable discovery of a generally performant design in an efficient manner, whereas for fine-tuning of performance where intricate tweaks are sought optimisation may be performed on the full set of dimensions. 
 
 
 \newpage{}
-
 \section{Conclusion}
 
 \newpage{}
 \section{Appendix}
-
-
-
+\subsection{VAE Model 1 : 2D VAE Model}
 
 
 
