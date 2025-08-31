@@ -627,6 +627,89 @@ author = "Brown, Nathan C and Mueller, Caitlin T",
    year = {2015}
 }
 
+@article{Boschini2025,
+   abstract = {Latin Hypercube Sampling (LHS) is a prominent tool in simulation design, with a variety of applications in high-dimensional and computationally expensive problems. LHS allows for various optimization strategies, most notably to ensure space-filling properties. However, LHS is a single-stage algorithm that requires a priori knowledge of the targeted sample size. In this work, we present “LHS in LHS,” a new expansion algorithm for LHS that enables the addition of new samples to an existing LHS-distributed set while (approximately) preserving its properties. In summary, the algorithm identifies regions of the parameter space that are far from the initial set, draws a new LHS within those regions, and then merges it with the original samples. As a by-product, we introduce a new metric, the LHS degree, which quantifies the deviation of a given design from an LHS distribution. Our public implementation is distributed via the Python package EXPANDLHS.},
+   author = {Matteo Boschini and Davide Gerosa and Alessandro Crespi and Matteo Falcone},
+   doi = {10.1016/J.SOFTX.2025.102294},
+   issn = {2352-7110},
+   journal = {SoftwareX},
+   keywords = {Latin hypercube sampling,Simulation design,Space-filling},
+   month = {9},
+   pages = {102294},
+   publisher = {Elsevier},
+   title = {“LHS in LHS”: A new expansion strategy for Latin hypercube sampling in simulation design},
+   volume = {31},
+   year = {2025}
+}
+
+@article{Mirza2014,
+   abstract = {Generative Adversarial Nets [8] were recently introduced as a novel way to train generative models. In this work we introduce the conditional version of generative adversarial nets, which can be constructed by simply feeding the data, y, we wish to condition on to both the generator and discriminator. We show that this model can generate MNIST digits conditioned on class labels. We also illustrate how this model could be used to learn a multi-modal model, and provide preliminary examples of an application to image tagging in which we demonstrate how this approach can generate descriptive tags which are not part of training labels.},
+   author = {Mehdi Mirza and Simon Osindero},
+   month = {11},
+   title = {Conditional Generative Adversarial Nets},
+   url = {https://arxiv.org/abs/1411.1784v1},
+   year = {2014}
+}
+
+@article{Oseni2021,
+   abstract = {The increased adoption of Artificial Intelligence (AI) presents an opportunity to solve many socio-economic and environmental challenges; however, this cannot happen without securing AI-enabled technologies. In recent years, most AI models are vulnerable to advanced and sophisticated hacking techniques. This challenge has motivated concerted research efforts into adversarial AI, with the aim of developing robust machine and deep learning models that are resilient to different types of adversarial scenarios. In this paper, we present a holistic cyber security review that demonstrates adversarial attacks against AI applications, including aspects such as adversarial knowledge and capabilities, as well as existing methods for generating adversarial examples and existing cyber defence models. We explain mathematical AI models, especially new variants of reinforcement and federated learning, to demonstrate how attack vectors would exploit vulnerabilities of AI models. We also propose a systematic framework for demonstrating attack techniques against AI applications and reviewed several cyber defences that would protect AI applications against those attacks. We also highlight the importance of understanding the adversarial goals and their capabilities, especially the recent attacks against industry applications, to develop adaptive defences that assess to secure AI applications. Finally, we describe the main challenges and future research directions in the domain of security and privacy of AI technologies.},
+   author = {Ayodeji Oseni and Nour Moustafa and Helge Janicke and Peng Liu and Zahir Tari and Athanasios Vasilakos},
+   doi = {10.1145/1122445.1122456},
+   issue = {111},
+   journal = {J. ACM},
+   keywords = {Adversarial Attacks,Adversarial Examples,Deep Learning,Machine Learning,Privacy,Security},
+   month = {2},
+   pages = {35},
+   title = {Security and Privacy for Artificial Intelligence: Opportunities and Challenges},
+   volume = {37},
+   url = {https://arxiv.org/abs/2102.04661v1},
+   year = {2021}
+}
+
+@article{Druc2022,
+   abstract = {We explore the interpretability of 3D geometric deep learning models in the context of Computer-Aided Design (CAD). The field of parametric CAD can be limited by the difficulty of expressing high-level design concepts in terms of a few numeric parameters. In this paper, we use a deep learning architectures to encode high dimensional 3D shapes into a vectorized latent representation that can be used to describe arbitrary concepts. Specifically, we train a simple auto-encoder to parameterize a dataset of complex shapes. To understand the latent encoded space, we use the idea of Concept Activation Vectors (CAV) to reinterpret the latent space in terms of user-defined concepts. This allows modification of a reference design to exhibit more or fewer characteristics of a chosen concept or group of concepts. We also test the statistical significance of the identified concepts and determine the sensitivity of a physical quantity of interest across the dataset.},
+   author = {Stefan Druc and Aditya Balu and Peter Wooldridge and Adarsh Krishnamurthy and Soumik Sarkar},
+   doi = {10.1109/CVPRW56347.2022.00338},
+   isbn = {9781665487399},
+   issn = {21607516},
+   journal = {IEEE Computer Society Conference on Computer Vision and Pattern Recognition Workshops},
+   month = {4},
+   pages = {2992-2999},
+   publisher = {IEEE Computer Society},
+   title = {Concept Activation Vectors for Generating User-Defined 3D Shapes},
+   volume = {2022-June},
+   url = {https://arxiv.org/abs/2205.02102v1},
+   year = {2022}
+}
+
+@article{Yousefzadeh2022,
+   abstract = {Many applications affecting human lives rely on models that have come to be known under the umbrella of machine learning and artificial intelligence. These AI models are usually complicated mathematical functions that map from an input space to an output space. Stakeholders are interested to know the rationales behind models' decisions and functional behavior. We study this functional behavior in relation to the data used to create the models. On this topic, scholars have often assumed that models do not extrapolate, i.e., they learn from their training samples and process new input by interpolation. This assumption is questionable: we show that models extrapolate frequently; the extent of extrapolation varies and can be socially consequential. We demonstrate that extrapolation happens for a substantial portion of datasets more than one would consider reasonable. How can we trust models if we do not know whether they are extrapolating? Given a model trained to recommend clinical procedures for patients, can we trust the recommendation when the model considers a patient older or younger than all the samples in the training set? If the training set is mostly Whites, to what extent can we trust its recommendations about Black and Hispanic patients? Which dimension (race, gender, or age) does extrapolation happen? Even if a model is trained on people of all races, it still may extrapolate in significant ways related to race. The leading question is, to what extent can we trust AI models when they process inputs that fall outside their training set? This paper investigates several social applications of AI, showing how models extrapolate without notice. We also look at different sub-spaces of extrapolation for specific individuals subject to AI models and report how these extrapolations can be interpreted, not mathematically, but from a humanistic point of view.},
+   author = {Roozbeh Yousefzadeh and Xuenan Cao},
+   doi = {10.1145/nnnnnnn.nnnnnnn},
+   keywords = {datasets,explainable AI,extrapolation,machine learning},
+   month = {1},
+   title = {To what extent should we trust AI models when they extrapolate?},
+   url = {https://arxiv.org/abs/2201.11260v1},
+   year = {2022}
+}
+
+@article{Karniadakis2021,
+   abstract = {Despite great progress in simulating multiphysics problems using the numerical discretization of partial differential equations (PDEs), one still cannot seamlessly incorporate noisy data into existing algorithms, mesh generation remains complex, and high-dimensional problems governed by parameterized PDEs cannot be tackled. Moreover, solving inverse problems with hidden physics is often prohibitively expensive and requires different formulations and elaborate computer codes. Machine learning has emerged as a promising alternative, but training deep neural networks requires big data, not always available for scientific problems. Instead, such networks can be trained from additional information obtained by enforcing the physical laws (for example, at random points in the continuous space-time domain). Such physics-informed learning integrates (noisy) data and mathematical models, and implements them through neural networks or other kernel-based regression networks. Moreover, it may be possible to design specialized network architectures that automatically satisfy some of the physical invariants for better accuracy, faster training and improved generalization. Here, we review some of the prevailing trends in embedding physics into machine learning, present some of the current capabilities and limitations and discuss diverse applications of physics-informed learning both for forward and inverse problems, including discovering hidden physics and tackling high-dimensional problems. The rapidly developing field of physics-informed learning integrates data and mathematical models seamlessly, enabling accurate inference of realistic and high-dimensional multiphysics problems. This Review discusses the methodology and provides diverse examples and an outlook for further developments.},
+   author = {George Em Karniadakis and Ioannis G. Kevrekidis and Lu Lu and Paris Perdikaris and Sifan Wang and Liu Yang},
+   doi = {10.1038/s42254-021-00314-5},
+   issn = {2522-5820},
+   issue = {6},
+   journal = {Nature Reviews Physics 2021 3:6},
+   keywords = {Applied mathematics,Computational science},
+   month = {5},
+   pages = {422-440},
+   publisher = {Nature Publishing Group},
+   title = {Physics-informed machine learning},
+   volume = {3},
+   url = {https://www.nature.com/articles/s42254-021-00314-5},
+   year = {2021}
+}
+
 
 
 
